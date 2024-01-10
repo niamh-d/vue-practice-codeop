@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme: "nord";
+  --color-white: #fff;
+  /* font-size: 62.5%; */
+}
+
+@layer base {
+  html {
+    font-family: "Proxima Nova", system-ui, sans-serif;
+  }
+  body {
+    @apply p-10;
+  }
+  button {
+    font-family: inherit;
+  }
+  select {
+    @apply p-1;
+    border-radius: 10px;
+  }
+  label {
+    @apply mr-5;
+  }
+  input {
+    font-family: inherit;
+    border-radius: 10px;
+    border: solid 1px;
+    @apply mr-14 p-2 w-48;
+  }
+  textarea {
+    @apply mr-14 p-3 w-52 h-28;
+    border-radius: 10px;
+    border: solid 1px;
+  }
+  h1 {
+    @apply font-extrabold text-3xl;
+  }
+  h2 {
+    @apply font-bold text-2xl mb-4;
+  }
+}
+
+@layer components {
+  header {
+    justify-content: space-around;
+  }
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .flex-end {
+    justify-content: end;
+  }
+
+  .card {
+    @apply p-10;
+    border-radius: 10px;
+    border: 2px solid;
+  }
+
+  .h-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-admin {
+    max-width: 35rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .container-projects {
+    max-width: 70rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .project {
+    max-width: 20rem;
+  }
+}
