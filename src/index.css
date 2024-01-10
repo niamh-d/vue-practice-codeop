@@ -42,6 +42,9 @@
   h2 {
     @apply font-bold text-2xl mb-4;
   }
+  img {
+    border-radius: 10px;
+  }
 }
 
 @layer components {
@@ -81,9 +84,37 @@
     max-width: 70rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    animation: moveInBottom 0.5s ease-out 0.75;
   }
 
   .project {
+    @apply text-justify;
     max-width: 20rem;
+  }
+
+  .project img {
+    transition: 0.5s ease-out;
+  }
+
+  .project img:hover {
+    transform: scale(1.1);
+  }
+
+  .project svg {
+    transition: 0.5s ease-out;
+    cursor: pointer;
+  }
+
+  @keyframes moveInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(8rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
   }
 }

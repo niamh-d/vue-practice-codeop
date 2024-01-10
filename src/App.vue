@@ -1,60 +1,56 @@
 <template>
   <div class="pt-5 pl-5">
-    <Header @toggle-admin="toggleIsAdmin" v-bind:is-admin="isAdmin" />
+    <Header />
     <div class="mt-20 pt-10 pl-5">
-      <card v-if="isAdmin" class="container-admin h-center">
-        <admin-view />
-      </card>
-      <user-view v-else />
+      <Card v-if="store.isAdminView" class="container-admin h-center">
+        <AdminView />
+      </Card>
+      <UserView v-else />
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
+import { onMounted } from "vue";
+import { themeChange } from "theme-change";
+
 import AdminView from "./components/AdminView.vue";
 import UserView from "./components/UserView.vue";
 import Header from "./components/Header.vue";
 import Card from "./components/Card.vue";
 
 import { defineStore } from "pinia";
-import { onMounted } from "vue";
-import { themeChange } from "theme-change";
-import { starterData } from "./components/StarterData";
+import { starterData } from "./StarterData";
 
+const store = useProjectsStore();
+
+onMounted(() => {
+  themeChange(false);
+});
+</script>
+
+<script>
 export const useProjectsStore = defineStore("projects", {
   state: () => ({
     projects: starterData,
+    isEditorMode: false,
+    projectToEditId: "",
+    isAdminView: false,
   }),
   getters: {},
+
   actions: {
+    toggleIsAdminView() {
+      this.isAdminView = !this.isAdminView;
+    },
+    openEditorMode(id) {
+      this.isEditorMode = true;
+      this.isAdminView = true;
+      this.projectToEditId = id;
+    },
     addProject(project) {
       this.projects.push(project);
     },
   },
 });
-
-export default {
-  setup() {
-    onMounted(() => {
-      themeChange(false);
-    });
-  },
-  name: "app",
-  components: {
-    userView: UserView,
-    adminView: AdminView,
-    Header,
-    card: Card,
-  },
-  data() {
-    return {
-      isAdmin: false,
-    };
-  },
-  methods: {
-    toggleIsAdmin() {
-      this.isAdmin = !this.isAdmin;
-    },
-  },
-};
 </script>

@@ -37,5 +37,9 @@ function addProject(payload) {
 </script>
 
 <template>
-  <DynamicForm @handler="addProject" :schema="formSchema" />
+  <DynamicForm
+    @handler="addProject"
+    :schema="formSchema"
+    :isEditorMode="false"
+  />
 </template>
