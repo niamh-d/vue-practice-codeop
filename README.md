@@ -21,3 +21,15 @@ Uses Pinia for state management and VeeValidate for forms, and Tailwind CSS and 
 Images from [Unsplash](https://unsplash.com/). Used for educational purposes only. No ownership asserted.
 
 [My homepage](https://www.niamhdoyle.dev/)
+
+### Favourite section
+
+![Favourite section](/imgs/favourite.png)
+
+### User view
+
+![User view](/imgs/user_view.png)
+
+### Admin view
+
+![Admin view](/imgs/admin_view.png)
