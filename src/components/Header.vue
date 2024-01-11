@@ -30,7 +30,7 @@ function toggleIsAdmin() {
       <Button v-else class="btn-primary" @click="toggleIsAdmin"
         >Switch to ADMIN</Button
       >
-      <ThemeSelector />
+      <ThemeSelector class="ml-8" />
     </div>
   </header>
 </template>

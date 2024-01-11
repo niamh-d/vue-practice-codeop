@@ -3,17 +3,6 @@ import Button from "./Button.vue";
 
 import { Form, Field, ErrorMessage } from "vee-validate";
 
-function onSubmit(values, { resetForm }) {
-  resetForm();
-  const id = new Date().getTime();
-  emit("handler", [values, id]);
-}
-
-function validateNotEmpty(value) {
-  if (!value) return "Required field";
-  else return true;
-}
-
 const emit = defineEmits(["handler"]);
 
 const props = defineProps({
@@ -26,6 +15,16 @@ const props = defineProps({
     required: true,
   },
 });
+
+function onSubmit(values, { resetForm }) {
+  resetForm();
+  emit("handler", values);
+}
+
+function validateNotEmpty(value) {
+  if (!value) return "Required field";
+  else return true;
+}
 </script>
 
 <template>
@@ -38,7 +37,6 @@ const props = defineProps({
         :as="field.as"
         :id="field.name"
         :name="field.name"
-        :value="field.value"
       />
       <Field
         v-else

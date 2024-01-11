@@ -57,7 +57,7 @@
   }
 
   .flex-end {
-    justify-content: end;
+    justify-content: flex-end;
   }
 
   .card {
@@ -69,6 +69,46 @@
   .h-center {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .favourite-box {
+    max-width: 70rem;
+    display: grid;
+    grid-template-columns: 4fr 3fr 2fr;
+    column-gap: 2rem;
+    animation: moveInLeft 0.5s ease-out 0.75;
+  }
+
+  .title-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    @apply gap-3;
+  }
+
+  .title-box h2 {
+    @apply font-bold text-2xl;
+  }
+
+  .title-box h2,
+  .title-box svg {
+    margin: 0;
+    @apply m-0 p-0 mb-5;
+  }
+
+  .title-box svg {
+    transition: 0.5s ease-out;
+    cursor: pointer;
+  }
+
+  .favourite-box img {
+    width: 100%;
+  }
+
+  .favourite-text-box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   .container-admin {
@@ -106,10 +146,29 @@
     cursor: pointer;
   }
 
+  .icons-box {
+    @apply flex flex-end gap-3 pb-3;
+    border-bottom: solid 1px;
+    width: 50%;
+    align-self: self-end;
+  }
+
   @keyframes moveInBottom {
     0% {
       opacity: 0;
       transform: translateY(8rem);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+
+  @keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-8rem);
     }
 
     100% {

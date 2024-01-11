@@ -1,7 +1,12 @@
 <template>
-  <Card class="project">
-    <div class="icons-box flex flex-end">
-      <TrashIcon />
+  <Card class="project" :class="{ 'bg-base-200': isFavoured }">
+    <div class="icons-box">
+      <StarIcon
+        @click="() => handleFavourite(project.id)"
+        :projectId="project.id"
+        :favouredId="store.favouredProjectId"
+      />
+      <TrashIcon @click="() => handleDelete(project.id)" />
       <PencilIcon @click="() => handleEdit(project.id)" />
     </div>
     <h3 class="text-lg font-bold mt-2 mb-3">{{ project.title }}</h3>
@@ -11,22 +16,40 @@
 </template>
 
 <script setup>
+import { useProjectsStore } from "../App.vue";
+
 import Card from "./Card.vue";
 import TrashIcon from "./TrashIcon.vue";
 import PencilIcon from "./PencilIcon.vue";
+import StarIcon from "./StarIcon.vue";
 
-import { useProjectsStore } from "../App.vue";
+const emit = defineEmits(["refresh"]);
 
 const store = useProjectsStore();
 
-function handleEdit(id) {
-  store.openEditorMode(id);
-}
-
 const props = defineProps({
+  favouredId: {
+    type: String,
+    required: true,
+  },
   project: {
     type: Object,
     required: true,
   },
 });
+
+const isFavoured = props.favouredId === props.project.id;
+
+function handleEdit(id) {
+  store.openEditorMode(id);
+}
+
+function handleDelete(id) {
+  store.deleteProject(id);
+}
+
+function handleFavourite(id) {
+  emit("refresh");
+  store.favourProject(id);
+}
 </script>

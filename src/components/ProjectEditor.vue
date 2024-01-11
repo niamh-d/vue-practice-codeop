@@ -1,20 +1,32 @@
 <script setup>
 import DynamicForm from "./DynamicForm.vue";
+
 import { useProjectsStore } from "../App.vue";
 
 const store = useProjectsStore();
 
-const id = store.selectedId;
+const [project] = store.projects.filter(
+  (project) => project.id === store.projectToEditId
+);
 
-const project = store.projects.filter((project) => project.id === id);
+const formValues = {
+  title: project.title,
+  source: project.source,
+  description: project.description,
+};
+
+function editProject(payload) {
+  store.closeEditorMode();
+  store.editProject(payload);
+}
 
 const formSchema = {
   fields: [
     {
       label: "Project Title",
       name: "title",
-      value: project.title,
       as: "input",
+      value: project.title,
     },
     {
       label: "Image URL",
@@ -25,15 +37,18 @@ const formSchema = {
     {
       label: "Project Description",
       name: "description",
-      value: project.description,
       as: "textarea",
+      value: project.description,
     },
   ],
 };
-
-//@handler="editProject"
 </script>
 
 <template>
-  <DynamicForm :schema="formSchema" :isEditorMode="true" />
+  <DynamicForm
+    :schema="formSchema"
+    :isEditorMode="true"
+    @handler="editProject"
+    :initialValues="formValues"
+  />
 </template>

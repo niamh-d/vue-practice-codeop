@@ -1,9 +1,6 @@
 {
-  "name": "fs-vue-portfolio",
-  "version": "0.2.0",
-  "private": true,
-  "author": "Krista Moroder & Germinal Camps for CodeOp",
-  "license": "Proprietary",
+  "name": "practice-vue-codeop",
+  "author": "Niamh Doyle",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

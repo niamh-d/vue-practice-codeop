@@ -30,7 +30,11 @@ import { useProjectsStore } from "../App.vue";
 const store = useProjectsStore();
 
 function addProject(payload) {
-  const [{ title, source, description }, id] = payload;
+  store.toggleIsAdminView();
+
+  const { title, source, description } = payload;
+
+  const id = new Date().getTime().toString();
 
   store.addProject({ title, source, description, id });
 }

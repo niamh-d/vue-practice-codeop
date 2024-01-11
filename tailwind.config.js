@@ -14,6 +14,10 @@ module.exports = {
       "dracula",
       "sunset",
       "lemonade",
+      "garden",
+      "pastel",
+      "valentine",
+      "forest",
     ],
   },
 };
