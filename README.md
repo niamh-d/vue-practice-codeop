@@ -33,3 +33,7 @@ Images from [Unsplash](https://unsplash.com/). Used for educational purposes onl
 ### Admin view
 
 ![Admin view](/imgs/admin_view.png)
+
+### Full page
+
+![Full page](/imgs/full-page.png)
