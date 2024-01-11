@@ -1,5 +1,15 @@
 # Practice Vue App
 
+## How to run
+
+```
+npm i
+npx tailwindcss -i ./src/index.css -o .src/output.css
+npm run dev
+```
+
+## Details
+
 Made for a bootcamp assignment to learn Vue.js.
 
 Add, edit and delete cards with title, image, and description.
