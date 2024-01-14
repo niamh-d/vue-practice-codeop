@@ -3,13 +3,13 @@
     <Header />
     <Favourite
       v-if="store.favouriteIsVisible && !store.isAdminView"
-      :key="componentKey"
+      :key="favouriteSectionComponentKey"
     />
     <div class="mt-20 pt-10 pl-5">
       <Card v-if="store.isAdminView" class="container-admin h-center">
         <AdminView />
       </Card>
-      <UserView v-else />
+      <UserView v-else :key="userViewComponentKey" />
     </div>
   </div>
 </template>
@@ -37,7 +37,8 @@ onMounted(() => {
 <script>
 import { ref } from "vue";
 
-const componentKey = ref(0);
+const favouriteSectionComponentKey = ref(0);
+const userViewComponentKey = ref(0);
 
 export const useProjectsStore = defineStore("projects", {
   state: () => ({
@@ -67,12 +68,13 @@ export const useProjectsStore = defineStore("projects", {
       if (id === this.favouredProjectId) {
         this.closeFavouriteProject();
       } else {
-        ++componentKey.value;
+        ++favouriteSectionComponentKey.value;
         this.favouriteIsVisible = true;
         this.favouredProjectId = id;
       }
     },
     closeFavouriteProject() {
+      ++userViewComponentKey.value;
       this.favouriteIsVisible = false;
       this.favouredProjectId = "";
     },
